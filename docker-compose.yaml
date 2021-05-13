@@ -3,6 +3,7 @@ version: "3"
 services:
   chrome:
     image: selenium/node-chrome:4.0.0-beta-3-20210426
+    container_name: chrome
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -16,6 +17,7 @@ services:
 
   edge:
     image: selenium/node-edge:4.0.0-beta-3-20210426
+    container_name: edge
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -29,6 +31,7 @@ services:
 
   firefox:
     image: selenium/node-firefox:4.0.0-beta-3-20210426
+    container_name: firefox
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -47,9 +50,10 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
-  e2e:
+  sandbox:
     build: .
-    command: dockerize -wait tcp://selenium-hub:4444 -timeout 15s -wait-retry-interval 1s && sleep 5s && pytest tests
+    container_name: sandbox
+    command: dockerize -wait tcp://selenium-hub:4444 -timeout 5s -wait-retry-interval 1s && sleep 5s && pytest tests
     depends_on:
       - chrome
       - edge
