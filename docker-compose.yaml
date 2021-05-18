@@ -50,10 +50,12 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+
   sandbox:
     build: .
     container_name: sandbox
-    command: dockerize -wait tcp://selenium-hub:4444 -timeout 5s -wait-retry-interval 1s && sleep 5s && pytest tests
+    tty: true
+    command: ["dockerize", "-wait", "tcp://selenium-hub:4444", "-timeout", "15s" ,"-wait-retry-interval", "1s", "/bin/bash"]
     depends_on:
       - chrome
       - edge
