@@ -19,6 +19,7 @@ RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.29.0/ge
     && tar zxf /tmp/geckodriver.tgz -C /usr/bin/ \
     && rm /tmp/geckodriver.tgz
 
-COPY ./tests ./tests
+COPY ./project ./project
+WORKDIR project
 
 CMD ["pytest", "tests"]

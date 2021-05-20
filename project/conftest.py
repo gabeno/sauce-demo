@@ -2,12 +2,18 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from project.pages.page_login import LoginPage
 
 REMOTE_URL = "http://selenium-hub:4444"
 
 
 def pytest_addoption(parser):
-    parser.addoption("--driver", action="store", default="chrome", help="Provide browser type")
+    parser.addoption(
+        "--driver",
+        action="store",
+        default="chrome",
+        help="Provide browser type",
+    )
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -35,3 +41,9 @@ def driver(request):
         )
     yield conn
     conn.quit()
+
+
+@pytest.fixture(scope="function")
+def login_page(driver):
+    login_page = LoginPage(driver)
+    return login_page
