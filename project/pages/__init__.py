@@ -1,4 +1,5 @@
 import enum
+from collections import namedtuple
 
 from selenium.common.exceptions import (
     NoSuchElementException,
@@ -11,6 +12,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 WEB_DRIVER_WAIT_SEC = 2
 PAGE_URL = "https://www.saucedemo.com/"
+INVENTORY_ITEM_NAMES = [
+    "Sauce Labs Backpack",
+    "Sauce Labs Bike Light",
+    "Sauce Labs Bolt T-Shirt",
+    "Sauce Labs Fleece Jacket",
+    "Sauce Labs Onesie",
+    "Test.allTheThings() T-Shirt (Red)",
+]
 
 
 @enum.unique
@@ -25,11 +34,15 @@ class Page(object):
     def __init__(self, driver):
         self.driver = driver
 
-    def get_element(self, name, by_type):
+    def get_element(self, name, by_type, condition="present"):
         LOCATORS = {"id": By.ID, "xpath": By.XPATH, "classname": By.CLASS_NAME}
+        EXPECTED_CONDITIONS = {
+            "present": EC.presence_of_element_located,
+            "clickable": EC.element_to_be_clickable,
+        }
         try:
             el = WebDriverWait(self.driver, WEB_DRIVER_WAIT_SEC).until(
-                EC.presence_of_element_located((LOCATORS[by_type], name))
+                EXPECTED_CONDITIONS[condition]((LOCATORS[by_type], name))
             )
         except (
             StaleElementReferenceException,
@@ -40,3 +53,29 @@ class Page(object):
                 f"An exception of type {type(e).__name__} occurred."
             )
         return el
+
+    def make_inventory_list(self, items):
+        Item = namedtuple("Item", ["name", "price", "quantity"])
+        cart_items = []
+
+        for item in items:
+            # find_elements_by_class returns a list
+            name = item.find_elements_by_class_name("inventory_item_name")[
+                0
+            ].text
+            # slice string to remove dollar sign: "$7.77" -> "7.77"
+            price = float(
+                item.find_elements_by_class_name("inventory_item_price")[
+                    0
+                ].text[1:]
+            )
+            try:
+                # quantity does not exist in the inventory page
+                quantity = int(
+                    item.find_elements_by_class_name("cart_quantity")[0].text
+                )
+            except Exception:
+                quantity = 0
+            cart_items.append(Item(name, price, quantity))
+
+        return cart_items

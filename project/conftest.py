@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from project.pages.page_inventory import InventoryPage
 from project.pages.page_login import LoginPage
 
 REMOTE_URL = "http://selenium-hub:4444"
@@ -45,5 +46,14 @@ def driver(request):
 
 @pytest.fixture(scope="function")
 def login_page(driver):
-    login_page = LoginPage(driver)
-    return login_page
+    return LoginPage(driver)
+
+
+@pytest.fixture(scope="function")
+def inventory_page(driver):
+    page = InventoryPage(driver)
+    yield page
+    # guard against breaking test__logout_from_inventory_page__ok test
+    if page.is_logged_in():
+        page.reset_app_state()
+        page.logout()
