@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from project.pages.page_cart import CartPage
 from project.pages.page_inventory import InventoryPage
 from project.pages.page_login import LoginPage
 
@@ -57,3 +58,9 @@ def inventory_page(driver):
     if page.is_logged_in():
         page.reset_app_state()
         page.logout()
+
+
+@pytest.fixture(scope="function")
+def cart_page(driver):
+    page = CartPage(driver)
+    return page

@@ -2,6 +2,7 @@ import enum
 
 from project.pages import Page
 from project.pages.page_login import LoginPage
+from project.pages.utils import make_id_from_name
 
 
 @enum.unique
@@ -81,9 +82,6 @@ class InventoryPage(MenuComponent):
     def __init__(self, driver):
         super(InventoryPage, self).__init__(driver)
 
-    def _normalize_item_name(self, name):
-        return name.lower().replace(" ", "-")
-
     def get_title(self):
         return self.get_element(
             name="//span[@class='title']", by_type="xpath"
@@ -143,13 +141,13 @@ class InventoryPage(MenuComponent):
         return has_items
 
     def click_add_item_button(self, item_name):
-        item_name = self._normalize_item_name(item_name)
+        item_name = make_id_from_name(item_name)
         item_id = f"add-to-cart-{item_name}"
         add_item_button = self.get_item_action_button(item_id)
         add_item_button.click()
 
     def click_remove_item_button(self, item_name):
-        item_name = self._normalize_item_name(item_name)
+        item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
         remove_item_button = self.get_item_action_button(item_id)
         remove_item_button.click()
