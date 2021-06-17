@@ -30,6 +30,13 @@ class LoginFormError(enum.Enum):
     LOCKED_OUT_ERROR = "Epic sadface: Sorry, this user has been locked out."
 
 
+@enum.unique
+class CheckoutUserInfoFormError(enum.Enum):
+    FIRST_NAME_ERROR = "Error: First Name is required"
+    LAST_NAME_ERROR = "Error: Last Name is required"
+    POSTAL_CODE_ERROR = "Error: Postal Code is required"
+
+
 class Page(object):
     def __init__(self, driver):
         self.driver = driver
