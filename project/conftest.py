@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from project.pages.page_cart import CartPage
+from project.pages.page_checkout_complete import CheckoutCompletePage
 from project.pages.page_checkout_confirmation import CheckoutConfirmationPage
 from project.pages.page_checkout_information import CheckoutInformationPage
 from project.pages.page_inventory import InventoryPage
@@ -77,4 +78,10 @@ def checkout_information_page(driver):
 @pytest.fixture(scope="function")
 def checkout_confirmation_page(driver):
     page = CheckoutConfirmationPage(driver)
+    return page
+
+
+@pytest.fixture(scope="function")
+def checkout_complete_page(driver):
+    page = CheckoutCompletePage(driver)
     return page
