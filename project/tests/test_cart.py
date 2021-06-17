@@ -29,6 +29,7 @@ def test__add_items_to_cart__items_exist_in_cart(
     [inventory_page.click_add_item_button(item) for item in inventory_list]
     inventory_page.click_cart_link()
     cart_items = cart_page.get_cart_items()
+    assert cart_page.title == "YOUR CART"
     assert len(cart_items) == count
     assert sorted([item.name for item in cart_items]) == sorted(products)
 

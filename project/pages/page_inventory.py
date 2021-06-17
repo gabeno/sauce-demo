@@ -82,10 +82,9 @@ class InventoryPage(MenuComponent):
     def __init__(self, driver):
         super(InventoryPage, self).__init__(driver)
 
-    def get_title(self):
-        return self.get_element(
-            name="//span[@class='title']", by_type="xpath"
-        ).text
+    @property
+    def title(self):
+        return self.get_title()
 
     def get_item_action_button(self, item_name):
         return self.get_element(

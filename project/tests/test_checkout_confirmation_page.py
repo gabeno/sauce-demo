@@ -12,4 +12,4 @@ def test__checkout_confirmation__ok(
     cart_page.click_checkout_button()
     checkout_information_page.set_user_information("a", "b", "0")
     checkout_information_page.click_continue_button()
-    assert checkout_confirmation_page.get_title() == "CHECKOUT: OVERVIEW"
+    assert checkout_confirmation_page.title == "CHECKOUT: OVERVIEW"

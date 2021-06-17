@@ -92,3 +92,8 @@ class Page(object):
             cart_items.append(Item(name, price, quantity))
 
         return cart_items
+
+    def get_title(self):
+        return self.get_element(
+            name="//span[@class='title']", by_type="xpath"
+        ).text

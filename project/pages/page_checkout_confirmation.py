@@ -5,10 +5,9 @@ class CheckoutConfirmationPage(LoginPage):
     def __init__(self, driver):
         super(CheckoutConfirmationPage, self).__init__(driver)
 
-    def get_title(self):
-        return self.get_element(
-            name="//span[@class='title']", by_type="xpath"
-        ).text
+    @property
+    def title(self):
+        return self.get_title()
 
     def get_finish_button(self):
         return self.get_element(

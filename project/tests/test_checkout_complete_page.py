@@ -14,4 +14,4 @@ def test__checkout_complete__ok(
     checkout_information_page.set_user_information("a", "b", "0")
     checkout_information_page.click_continue_button()
     checkout_confirmation_page.click_finish_button()
-    assert checkout_complete_page.get_title() == "CHECKOUT: COMPLETE!"
+    assert checkout_complete_page.title == "CHECKOUT: COMPLETE!"

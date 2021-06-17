@@ -5,6 +5,10 @@ class CheckoutInformationPage(LoginPage):
     def __init__(self, driver):
         super(CheckoutInformationPage, self).__init__(driver)
 
+    @property
+    def title(self):
+        return self.get_title()
+
     def set_first_name(self, value):
         self.set_field("first-name", value)
 

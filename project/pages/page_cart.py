@@ -7,6 +7,10 @@ class CartPage(LoginPage):
         super(CartPage, self).__init__(driver)
         self.login("standard_user", "secret_sauce")
 
+    @property
+    def title(self):
+        return self.get_title()
+
     def get_cart_link(self):
         return self.get_element(
             name="//div[@id='shopping_cart_link']", by_type="xpath"

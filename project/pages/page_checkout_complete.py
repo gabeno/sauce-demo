@@ -5,10 +5,9 @@ class CheckoutCompletePage(LoginPage):
     def __init__(self, driver):
         super(CheckoutCompletePage, self).__init__(driver)
 
-    def get_title(self):
-        return self.get_element(
-            name="//span[@class='title']", by_type="xpath"
-        ).text
+    @property
+    def title(self):
+        return self.get_title()
 
     def get_back_button(self):
         return self.get_element(

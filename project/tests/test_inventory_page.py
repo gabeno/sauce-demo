@@ -6,8 +6,8 @@ from project.pages import INVENTORY_ITEM_NAMES
 from project.pages.page_inventory import SortOption
 
 
-def test__page_loaded_after_login__ok(inventory_page):
-    assert inventory_page.get_title() == "PRODUCTS"
+def test__inventory_page_loaded__ok(inventory_page):
+    assert inventory_page.title == "PRODUCTS"
 
 
 def test__logout_from_inventory_page__ok(inventory_page):
