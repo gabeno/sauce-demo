@@ -23,7 +23,7 @@ INVENTORY_ITEM_NAMES = [
 
 
 @enum.unique
-class ErrorType(enum.Enum):
+class LoginFormError(enum.Enum):
     USERNAME_AND_PASSWORD_ERROR = "Epic sadface: Username and password do not match any user in this service"
     USERNAME_ERROR = "Epic sadface: Username is required"
     PASSWORD_ERROR = "Epic sadface: Password is required"
@@ -53,6 +53,12 @@ class Page(object):
                 f"An exception of type {type(e).__name__} occurred."
             )
         return el
+
+    def get_field(self, _id):
+        return self.get_element(name=_id, by_type="id")
+
+    def set_field(self, _id, value):
+        self.get_field(_id).send_keys(value)
 
     def make_inventory_list(self, items):
         Item = namedtuple("Item", ["name", "price", "quantity"])
