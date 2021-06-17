@@ -24,7 +24,7 @@ def test__initial_page_load__no_items_in_cart(inventory_page):
     "item_name",
     INVENTORY_ITEM_NAMES,
 )
-def test__add_items_to_cart__ok(inventory_page, item_name):
+def test__add_each_item_to_cart__ok(inventory_page, item_name):
     inventory_page.click_add_item_button(item_name)
     assert inventory_page.get_cart_items_count() == "1"
 
@@ -35,16 +35,29 @@ def test__add_items_to_cart__ok(inventory_page, item_name):
 )
 def test__remove_items_from_cart__ok(inventory_page, item_name):
     inventory_page.click_add_item_button(item_name)
+    assert inventory_page.has_items_in_cart() is True
     inventory_page.click_remove_item_button(item_name)
     assert inventory_page.has_items_in_cart() is False
 
 
-def test__add_multiple_items_to_cart__ok(inventory_page):
-    for item in INVENTORY_ITEM_NAMES:
-        inventory_page.click_add_item_button(item)
-    assert inventory_page.get_cart_items_count() == str(
-        len(INVENTORY_ITEM_NAMES)
-    )
+@pytest.mark.parametrize(
+    "item_list, count",
+    [
+        (["Sauce Labs Onesie"], "1"),  # one item
+        (
+            [
+                "Sauce Labs Onesie",
+                "Sauce Labs Backpack",
+                "Test.allTheThings() T-Shirt (Red)",
+            ],
+            "3",
+        ),  # multiple items
+        (INVENTORY_ITEM_NAMES, "6"),  # all items
+    ],
+)
+def test__add_items_to_cart__cart_count_ok(inventory_page, item_list, count):
+    [inventory_page.click_add_item_button(item) for item in item_list]
+    assert inventory_page.get_cart_items_count() == count
 
 
 def test__sort_by_name_a_to_z__ok(inventory_page):
