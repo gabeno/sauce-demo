@@ -34,20 +34,6 @@ class MenuComponent(LoginPage):
     def get_burger_menu_close_button(self):
         return self.get_button("react-burger-cross-btn")
 
-    def get_reset_app_state_link(self):
-        return self.get_element(
-            name="//a[@id='reset_sidebar_link']",
-            by_type="xpath",
-            condition="clickable",
-        )
-
-    def get_logout_link(self):
-        return self.get_element(
-            name="//a[@id='logout_sidebar_link']",
-            by_type="xpath",
-            condition="clickable",
-        )
-
     def click_burger_menu_open_button(self):
         self.get_burger_menu_open_button().click()
 
@@ -55,10 +41,10 @@ class MenuComponent(LoginPage):
         self.get_burger_menu_close_button().click()
 
     def click_reset_app_link(self):
-        self.get_reset_app_state_link().click()
+        self.get_link("reset_sidebar_link").click()
 
     def click_logout_link(self):
-        self.get_logout_link().click()
+        self.get_link("logout_sidebar_link").click()
 
     def reset_app_state(self):
         self.click_burger_menu_open_button()
@@ -97,15 +83,8 @@ class InventoryPage(MenuComponent):
         products = parent.find_elements_by_class_name("inventory_item")
         return self.make_inventory_list(products)
 
-    def get_cart_link(self):
-        return self.get_element(
-            name="//a[@class='shopping_cart_link']",
-            by_type="xpath",
-            condition="clickable",
-        )
-
     def click_cart_link(self):
-        self.get_cart_link().click()
+        self.get_link("shopping_cart_link", selector_type="class").click()
 
     def is_logged_in(self):
         is_logged_in = False

@@ -102,3 +102,10 @@ class Page(object):
         return self.get_element(
             name=f"//button[@{selector_type}='{name}']", by_type="xpath"
         )
+
+    def get_link(self, name, selector_type="id", tag="a"):
+        return self.get_element(
+            name=f"//{tag}[@{selector_type}='{name}']",
+            by_type="xpath",
+            condition="clickable",
+        )
