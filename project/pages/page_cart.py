@@ -11,9 +11,6 @@ class CartPage(LoginPage):
     def title(self):
         return self.get_title()
 
-    def get_checkout_button(self):
-        return self.get_button("checkout")
-
     def get_cart_items(self):
         parent = self.get_element(
             name="//*[@class='cart_list']", by_type="xpath"
@@ -30,4 +27,4 @@ class CartPage(LoginPage):
         self.get_button(item_id).click()
 
     def click_checkout_button(self):
-        self.get_checkout_button().click()
+        self.get_button("checkout").click()

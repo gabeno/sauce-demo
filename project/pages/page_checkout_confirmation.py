@@ -9,11 +9,8 @@ class CheckoutConfirmationPage(LoginPage):
     def title(self):
         return self.get_title()
 
-    def get_finish_button(self):
-        return self.get_button("finish")
-
-    def get_cancel_button(self):
-        return self.get_button("cancel")
+    def click_cancel_button(self):
+        self.get_button("cancel").click()
 
     def click_finish_button(self):
-        self.get_finish_button().click()
+        self.get_button("finish").click()

@@ -6,9 +6,6 @@ class LoginPage(Page):
         super(LoginPage, self).__init__(driver)
         self.driver.get(PAGE_URL)
 
-    def get_error_button(self):
-        return self.get_button("error-button", selector_type="class")
-
     def get_error_message(self):
         return self.get_element(name="//h3", by_type="xpath").text
 
@@ -21,10 +18,10 @@ class LoginPage(Page):
     def click_login_button(self):
         self.get_button("login-button").click()
 
+    def click_error_button(self):
+        self.get_button("error-button", selector_type="class").click()
+
     def login(self, username, password):
         self.set_username(username)
         self.set_password(password)
         self.click_login_button()
-
-    def click_error_button(self):
-        self.get_error_button().click()

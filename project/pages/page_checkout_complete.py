@@ -9,8 +9,5 @@ class CheckoutCompletePage(LoginPage):
     def title(self):
         return self.get_title()
 
-    def get_back_button(self):
-        return self.get_button("back-to-products")
-
     def click_back_button(self):
-        self.get_back_button().click()
+        self.get_button("back-to-products").click()
