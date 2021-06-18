@@ -1,4 +1,5 @@
 import pytest
+from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
@@ -60,6 +61,9 @@ def inventory_page(driver):
     # guard against breaking test__logout_from_inventory_page__ok test
     if page.is_logged_in():
         page.reset_app_state()
+        # XXX occassionally ElementClickInterceptedException is observed so we
+        # introduce 50ms delay before logout is clicked
+        sleep(0.05)
         page.logout()
 
 
