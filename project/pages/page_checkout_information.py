@@ -21,17 +21,10 @@ class CheckoutInformationPage(LoginPage):
     def get_error_message(self):
         return self.get_element(name="//h3", by_type="xpath").text
 
-    def get_continue_button(self):
-        return self.get_element(
-            name="//input[@id='continue']",
-            by_type="xpath",
-            condition="clickable",
-        )
-
     def set_user_information(self, first_name, last_name, postal_code):
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_postal_code(postal_code)
 
     def click_continue_button(self):
-        self.get_continue_button().click()
+        self.get_button("continue", tag="input").click()

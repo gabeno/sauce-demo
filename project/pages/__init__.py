@@ -98,9 +98,9 @@ class Page(object):
             name="//span[@class='title']", by_type="xpath"
         ).text
 
-    def get_button(self, name, selector_type="id"):
+    def get_button(self, name, selector_type="id", tag="button"):
         return self.get_element(
-            name=f"//button[@{selector_type}='{name}']", by_type="xpath"
+            name=f"//{tag}[@{selector_type}='{name}']", by_type="xpath"
         )
 
     def get_link(self, name, selector_type="id", tag="a"):
