@@ -12,9 +12,7 @@ class CartPage(LoginPage):
         return self.get_title()
 
     def get_cart_items(self):
-        parent = self.get_element(
-            name="//*[@class='cart_list']", by_type="xpath"
-        )
+        parent = self.get_element(name="//*[@class='cart_list']")
         cart_items = parent.find_elements_by_class_name("cart_item")
         return self.make_inventory_list(cart_items)
 

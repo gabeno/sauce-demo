@@ -41,8 +41,8 @@ class Page(object):
     def __init__(self, driver):
         self.driver = driver
 
-    def get_element(self, name, by_type, condition="present"):
-        LOCATORS = {"id": By.ID, "xpath": By.XPATH, "classname": By.CLASS_NAME}
+    def get_element(self, name, by_type="xpath", condition="present"):
+        LOCATORS = {"id": By.ID, "xpath": By.XPATH}
         EXPECTED_CONDITIONS = {
             "present": EC.presence_of_element_located,
             "clickable": EC.element_to_be_clickable,
@@ -94,21 +94,16 @@ class Page(object):
         return cart_items
 
     def get_title(self):
-        return self.get_element(
-            name="//span[@class='title']", by_type="xpath"
-        ).text
+        return self.get_element(name="//span[@class='title']").text
 
     def get_button(self, name, selector_type="id", tag="button"):
-        return self.get_element(
-            name=f"//{tag}[@{selector_type}='{name}']", by_type="xpath"
-        )
+        return self.get_element(name=f"//{tag}[@{selector_type}='{name}']")
 
     def get_link(self, name, selector_type="id", tag="a"):
         return self.get_element(
             name=f"//{tag}[@{selector_type}='{name}']",
-            by_type="xpath",
             condition="clickable",
         )
 
     def get_error_message(self):
-        return self.get_element(name="//h3", by_type="xpath").text
+        return self.get_element(name="//h3").text

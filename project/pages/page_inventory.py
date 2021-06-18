@@ -80,20 +80,17 @@ class InventoryPage(MenuComponent):
 
     def get_cart_items_count(self):
         return self.get_element(
-            name="//span[@class='shopping_cart_badge']", by_type="xpath"
+            name="//span[@class='shopping_cart_badge']"
         ).text
 
     def get_sort_option(self, option):
         return self.get_element(
             name=f"//select[@class='product_sort_container']/option[@value='{option.value}']",
-            by_type="xpath",
         )
 
     def get_inventory_list(self, option=SortOption.NAME_A_TO_Z):
         """Get list of inventory items as per filter selection"""
-        parent = self.get_element(
-            name="//*[@class='inventory_list']", by_type="xpath"
-        )
+        parent = self.get_element(name="//*[@class='inventory_list']")
         products = parent.find_elements_by_class_name("inventory_item")
         return self.make_inventory_list(products)
 
