@@ -6,9 +6,6 @@ class LoginPage(Page):
         super(LoginPage, self).__init__(driver)
         self.driver.get(PAGE_URL)
 
-    def get_error_message(self):
-        return self.get_element(name="//h3", by_type="xpath").text
-
     def set_username(self, username):
         self.set_field("user-name", username)
 

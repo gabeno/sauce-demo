@@ -109,3 +109,6 @@ class Page(object):
             by_type="xpath",
             condition="clickable",
         )
+
+    def get_error_message(self):
+        return self.get_element(name="//h3", by_type="xpath").text

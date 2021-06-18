@@ -18,9 +18,6 @@ class CheckoutInformationPage(LoginPage):
     def set_postal_code(self, value):
         self.set_field("postal-code", value)
 
-    def get_error_message(self):
-        return self.get_element(name="//h3", by_type="xpath").text
-
     def set_user_information(self, first_name, last_name, postal_code):
         self.set_first_name(first_name)
         self.set_last_name(last_name)
