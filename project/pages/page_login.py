@@ -6,12 +6,6 @@ class LoginPage(Page):
         super(LoginPage, self).__init__(driver)
         self.driver.get(PAGE_URL)
 
-    def get_login_page_logo(self):
-        login_logo_container = self.get_element(
-            name="login_logo", by_type="classname"
-        )
-        return login_logo_container.size != 0
-
     def get_error_button(self):
         return self.get_button("error-button", selector_type="class")
 

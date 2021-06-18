@@ -3,10 +3,6 @@ import pytest
 from project.pages import LoginFormError
 
 
-def test__login_page_logo_exists__ok(login_page):
-    assert login_page.get_login_page_logo() is True
-
-
 @pytest.mark.parametrize(
     "username,password,error_message",
     [
