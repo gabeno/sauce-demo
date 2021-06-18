@@ -64,6 +64,20 @@ class InventoryPage(MenuComponent):
     def title(self):
         return self.get_title()
 
+    def is_logged_in(self):
+        try:
+            self.get_title()
+            return True
+        except Exception:
+            return False
+
+    def has_items_in_cart(self):
+        try:
+            self.get_cart_items_count()
+            return True
+        except Exception:
+            return False
+
     def get_cart_items_count(self):
         return self.get_element(
             name="//span[@class='shopping_cart_badge']", by_type="xpath"
@@ -85,24 +99,6 @@ class InventoryPage(MenuComponent):
 
     def click_cart_link(self):
         self.get_link("shopping_cart_link", selector_type="class").click()
-
-    def is_logged_in(self):
-        is_logged_in = False
-        try:
-            self.get_title()
-            is_logged_in = True
-        except Exception:
-            pass
-        return is_logged_in
-
-    def has_items_in_cart(self):
-        has_items = False
-        try:
-            self.get_cart_items_count()
-            has_items = True
-        except Exception:
-            pass
-        return has_items
 
     def click_add_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
