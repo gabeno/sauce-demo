@@ -25,8 +25,7 @@ class LoginPage(Page):
         self.set_field("password", password)
 
     def click_login_button(self):
-        login_button = self.get_element(name="login-button", by_type="id")
-        login_button.click()
+        self.get_button_by_id("login-button").click()
 
     def login(self, username, password):
         self.set_username(username)

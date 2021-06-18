@@ -27,15 +27,12 @@ class CartPage(LoginPage):
         return self.make_inventory_list(cart_items)
 
     def click_cart_link(self):
-        cart_link = self.get_cart_link()
-        cart_link.click()
+        self.get_cart_link().click()
 
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        remove_item_button = self.get_button_by_id(item_id)
-        remove_item_button.click()
+        self.get_button_by_id(item_id).click()
 
     def click_checkout_button(self):
-        button = self.get_checkout_button()
-        button.click()
+        self.get_checkout_button().click()

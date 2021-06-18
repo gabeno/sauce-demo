@@ -49,20 +49,16 @@ class MenuComponent(LoginPage):
         )
 
     def click_burger_menu_open_button(self):
-        button = self.get_burger_menu_open_button()
-        button.click()
+        self.get_burger_menu_open_button().click()
 
     def click_burger_menu_close_button(self):
-        button = self.get_burger_menu_close_button()
-        button.click()
+        self.get_burger_menu_close_button().click()
 
     def click_reset_app_link(self):
-        reset_link = self.get_reset_app_state_link()
-        reset_link.click()
+        self.get_reset_app_state_link().click()
 
     def click_logout_link(self):
-        logout_link = self.get_logout_link()
-        logout_link.click()
+        self.get_logout_link().click()
 
     def reset_app_state(self):
         self.click_burger_menu_open_button()
@@ -109,8 +105,7 @@ class InventoryPage(MenuComponent):
         )
 
     def click_cart_link(self):
-        cart_link = self.get_cart_link()
-        cart_link.click()
+        self.get_cart_link().click()
 
     def is_logged_in(self):
         is_logged_in = False
@@ -133,15 +128,12 @@ class InventoryPage(MenuComponent):
     def click_add_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"add-to-cart-{item_name}"
-        add_item_button = self.get_button_by_id(item_id)
-        add_item_button.click()
+        self.get_button_by_id(item_id).click()
 
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        remove_item_button = self.get_button_by_id(item_id)
-        remove_item_button.click()
+        self.get_button_by_id(item_id).click()
 
     def click_sort_option(self, option):
-        sort_option = self.get_sort_option(option)
-        sort_option.click()
+        self.get_sort_option(option).click()
