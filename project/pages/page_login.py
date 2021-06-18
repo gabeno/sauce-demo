@@ -13,7 +13,7 @@ class LoginPage(Page):
         self.set_field("password", password)
 
     def click_login_button(self):
-        self.get_button("login-button").click()
+        self.get_button("login-button", tag="input").click()
 
     def click_error_button(self):
         self.get_button("error-button", selector_type="class").click()
