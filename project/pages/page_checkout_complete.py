@@ -10,11 +10,7 @@ class CheckoutCompletePage(LoginPage):
         return self.get_title()
 
     def get_back_button(self):
-        return self.get_element(
-            name="//button[@id='back-to-products']",
-            by_type="xpath",
-            condition="clickable",
-        )
+        return self.get_button_by_id("back-to-products")
 
     def click_back_button(self):
         self.get_back_button().click()

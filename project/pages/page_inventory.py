@@ -29,14 +29,10 @@ class MenuComponent(LoginPage):
         self.login("standard_user", "secret_sauce")
 
     def get_burger_menu_open_button(self):
-        return self.get_element(
-            name="//button[@id='react-burger-menu-btn']", by_type="xpath"
-        )
+        return self.get_button_by_id("react-burger-menu-btn")
 
     def get_burger_menu_close_button(self):
-        return self.get_element(
-            name="//button[@id='react-burger-cross-btn']", by_type="xpath"
-        )
+        return self.get_button_by_id("react-burger-cross-btn")
 
     def get_reset_app_state_link(self):
         return self.get_element(
@@ -85,11 +81,6 @@ class InventoryPage(MenuComponent):
     @property
     def title(self):
         return self.get_title()
-
-    def get_item_action_button(self, item_name):
-        return self.get_element(
-            name=f"//button[@id='{item_name}']", by_type="xpath"
-        )
 
     def get_cart_items_count(self):
         return self.get_element(
@@ -142,13 +133,13 @@ class InventoryPage(MenuComponent):
     def click_add_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"add-to-cart-{item_name}"
-        add_item_button = self.get_item_action_button(item_id)
+        add_item_button = self.get_button_by_id(item_id)
         add_item_button.click()
 
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        remove_item_button = self.get_item_action_button(item_id)
+        remove_item_button = self.get_button_by_id(item_id)
         remove_item_button.click()
 
     def click_sort_option(self, option):

@@ -17,9 +17,7 @@ class CartPage(LoginPage):
         )
 
     def get_checkout_button(self):
-        return self.get_element(
-            name="//button[@id='checkout']", by_type="xpath"
-        )
+        return self.get_button_by_id("checkout")
 
     def get_cart_items(self):
         parent = self.get_element(
@@ -28,11 +26,6 @@ class CartPage(LoginPage):
         cart_items = parent.find_elements_by_class_name("cart_item")
         return self.make_inventory_list(cart_items)
 
-    def get_item_action_button(self, item_name):
-        return self.get_element(
-            name=f"//button[@id='{item_name}']", by_type="xpath"
-        )
-
     def click_cart_link(self):
         cart_link = self.get_cart_link()
         cart_link.click()
@@ -40,7 +33,7 @@ class CartPage(LoginPage):
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        remove_item_button = self.get_item_action_button(item_id)
+        remove_item_button = self.get_button_by_id(item_id)
         remove_item_button.click()
 
     def click_checkout_button(self):

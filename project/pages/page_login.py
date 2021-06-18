@@ -13,11 +13,7 @@ class LoginPage(Page):
         return login_logo_container.size != 0
 
     def get_error_button(self):
-        return self.get_element(
-            name="//button[@class='error-button']",
-            by_type="xpath",
-            condition="clickable",
-        )
+        return self.get_button_by_class("error-button")
 
     def get_error_message(self):
         return self.get_element(name="//h3", by_type="xpath").text

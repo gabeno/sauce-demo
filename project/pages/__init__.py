@@ -97,3 +97,14 @@ class Page(object):
         return self.get_element(
             name="//span[@class='title']", by_type="xpath"
         ).text
+
+    def get_button(self, name, selector_type):
+        return self.get_element(
+            name=f"//button[@{selector_type}='{name}']", by_type="xpath"
+        )
+
+    def get_button_by_id(self, name):
+        return self.get_button(name, selector_type="id")
+
+    def get_button_by_class(self, name):
+        return self.get_button(name, selector_type="class")

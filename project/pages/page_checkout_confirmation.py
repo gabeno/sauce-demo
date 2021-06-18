@@ -10,18 +10,10 @@ class CheckoutConfirmationPage(LoginPage):
         return self.get_title()
 
     def get_finish_button(self):
-        return self.get_element(
-            name="//button[@id='finish']",
-            by_type="xpath",
-            condition="clickable",
-        )
+        return self.get_button_by_id("finish")
 
     def get_cancel_button(self):
-        return self.get_element(
-            name="//button[@id='cancel']",
-            by_type="xpath",
-            condition="clickable",
-        )
+        return self.get_button_by_id("cancel")
 
     def click_finish_button(self):
         self.get_finish_button().click()
