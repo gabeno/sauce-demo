@@ -29,10 +29,10 @@ class MenuComponent(LoginPage):
         self.login("standard_user", "secret_sauce")
 
     def get_burger_menu_open_button(self):
-        return self.get_button_by_id("react-burger-menu-btn")
+        return self.get_button("react-burger-menu-btn")
 
     def get_burger_menu_close_button(self):
-        return self.get_button_by_id("react-burger-cross-btn")
+        return self.get_button("react-burger-cross-btn")
 
     def get_reset_app_state_link(self):
         return self.get_element(
@@ -128,12 +128,12 @@ class InventoryPage(MenuComponent):
     def click_add_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"add-to-cart-{item_name}"
-        self.get_button_by_id(item_id).click()
+        self.get_button(item_id).click()
 
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        self.get_button_by_id(item_id).click()
+        self.get_button(item_id).click()
 
     def click_sort_option(self, option):
         self.get_sort_option(option).click()

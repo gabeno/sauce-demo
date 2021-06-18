@@ -10,10 +10,10 @@ class CheckoutConfirmationPage(LoginPage):
         return self.get_title()
 
     def get_finish_button(self):
-        return self.get_button_by_id("finish")
+        return self.get_button("finish")
 
     def get_cancel_button(self):
-        return self.get_button_by_id("cancel")
+        return self.get_button("cancel")
 
     def click_finish_button(self):
         self.get_finish_button().click()

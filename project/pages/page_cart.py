@@ -17,7 +17,7 @@ class CartPage(LoginPage):
         )
 
     def get_checkout_button(self):
-        return self.get_button_by_id("checkout")
+        return self.get_button("checkout")
 
     def get_cart_items(self):
         parent = self.get_element(
@@ -32,7 +32,7 @@ class CartPage(LoginPage):
     def click_remove_item_button(self, item_name):
         item_name = make_id_from_name(item_name)
         item_id = f"remove-{item_name}"
-        self.get_button_by_id(item_id).click()
+        self.get_button(item_id).click()
 
     def click_checkout_button(self):
         self.get_checkout_button().click()

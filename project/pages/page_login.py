@@ -13,7 +13,7 @@ class LoginPage(Page):
         return login_logo_container.size != 0
 
     def get_error_button(self):
-        return self.get_button_by_class("error-button")
+        return self.get_button("error-button", selector_type="class")
 
     def get_error_message(self):
         return self.get_element(name="//h3", by_type="xpath").text
@@ -25,7 +25,7 @@ class LoginPage(Page):
         self.set_field("password", password)
 
     def click_login_button(self):
-        self.get_button_by_id("login-button").click()
+        self.get_button("login-button").click()
 
     def login(self, username, password):
         self.set_username(username)
