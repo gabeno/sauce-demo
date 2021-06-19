@@ -8,6 +8,13 @@ class LoginPage(Page):
         self.user = user
         self.login()
 
+    def is_login_page(self):
+        try:
+            self.get_element("//div[@id='login_button_container']")
+            return True
+        except Exception:
+            return False
+
     def set_username(self):
         self.set_field("user-name", self.user.username)
 

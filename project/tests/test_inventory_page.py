@@ -10,10 +10,13 @@ def test__inventory_page_loaded__ok(inventory_page):
     assert inventory_page.title == "PRODUCTS"
 
 
-def test__logout_from_inventory_page__ok(inventory_page):
-    assert inventory_page.is_logged_in() is True
-    inventory_page.logout()
-    assert inventory_page.is_logged_in() is False
+def test__logout_from_inventory_page__ok(
+    inventory_page_without_reset, login_page
+):
+    assert inventory_page_without_reset.is_logged_in() is True
+    inventory_page_without_reset.logout()
+    assert inventory_page_without_reset.is_logged_in() is False
+    assert login_page.is_login_page() is True
 
 
 def test__initial_page_load__no_items_in_cart(inventory_page):
