@@ -1,6 +1,7 @@
 import pytest
 
-from project.pages import LoginFormError
+from project.pages import LoginFormError, User
+from project.pages.page_login import LoginPage
 
 
 @pytest.mark.parametrize(
@@ -22,9 +23,10 @@ from project.pages import LoginFormError
     ],
 )
 def test__failed_logins__error_message_shown(
-    login_page, username, password, error_message
+    driver, username, password, error_message
 ):
-    login_page.login(username, password)
+    user = User(username, password)
+    login_page = LoginPage(driver, user)
     assert login_page.get_error_message() == error_message
 
     # clear error message
@@ -41,9 +43,10 @@ def test__failed_logins__error_message_shown(
     ],
 )
 def test__login_with_proper_credentials__inventory_page_loaded(
-    login_page, username, password
+    driver, username, password
 ):
     with pytest.raises(Exception):
-        login_page.login(username, password)
+        user = User(username, password)
+        login_page = LoginPage(driver, user)
         # raises because no error on success
         login_page.get_error_message()

@@ -24,9 +24,8 @@ class SortOption(enum.Enum):
 
 
 class MenuComponent(LoginPage):
-    def __init__(self, driver):
-        super(MenuComponent, self).__init__(driver)
-        self.login("standard_user", "secret_sauce")
+    def __init__(self, driver, user):
+        super(MenuComponent, self).__init__(driver, user)
 
     def get_burger_menu_open_button(self):
         return self.get_button("react-burger-menu-btn")
@@ -57,8 +56,8 @@ class MenuComponent(LoginPage):
 
 
 class InventoryPage(MenuComponent):
-    def __init__(self, driver):
-        super(InventoryPage, self).__init__(driver)
+    def __init__(self, driver, user):
+        super(InventoryPage, self).__init__(driver, user)
 
     @property
     def title(self):

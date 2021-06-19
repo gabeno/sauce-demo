@@ -2,8 +2,8 @@ from project.pages.page_login import LoginPage
 
 
 class CheckoutInformationPage(LoginPage):
-    def __init__(self, driver):
-        super(CheckoutInformationPage, self).__init__(driver)
+    def __init__(self, driver, user):
+        super(CheckoutInformationPage, self).__init__(driver, user)
 
     @property
     def title(self):

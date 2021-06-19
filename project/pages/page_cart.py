@@ -3,9 +3,8 @@ from project.pages.utils import make_id_from_name
 
 
 class CartPage(LoginPage):
-    def __init__(self, driver):
-        super(CartPage, self).__init__(driver)
-        self.login("standard_user", "secret_sauce")
+    def __init__(self, driver, user):
+        super(CartPage, self).__init__(driver, user)
 
     @property
     def title(self):

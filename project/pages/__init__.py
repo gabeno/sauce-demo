@@ -37,6 +37,12 @@ class CheckoutUserInfoFormError(enum.Enum):
     POSTAL_CODE_ERROR = "Error: Postal Code is required"
 
 
+class User(object):
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+
 class Page(object):
     def __init__(self, driver):
         self.driver = driver

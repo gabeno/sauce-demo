@@ -1,8 +1,10 @@
-import pytest
 from time import sleep
+
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from project.pages import User
 from project.pages.page_cart import CartPage
 from project.pages.page_checkout_complete import CheckoutCompletePage
 from project.pages.page_checkout_confirmation import CheckoutConfirmationPage
@@ -49,14 +51,17 @@ def driver(request):
     conn.quit()
 
 
+user = User("standard_user", "secret_sauce")
+
+
 @pytest.fixture(scope="function")
 def login_page(driver):
-    return LoginPage(driver)
+    return LoginPage(driver, user)
 
 
 @pytest.fixture(scope="function")
 def inventory_page(driver):
-    page = InventoryPage(driver)
+    page = InventoryPage(driver, user)
     yield page
     # guard against breaking test__logout_from_inventory_page__ok test
     if page.is_logged_in():
@@ -69,23 +74,23 @@ def inventory_page(driver):
 
 @pytest.fixture(scope="function")
 def cart_page(driver):
-    page = CartPage(driver)
+    page = CartPage(driver, user)
     return page
 
 
 @pytest.fixture(scope="function")
 def checkout_information_page(driver):
-    page = CheckoutInformationPage(driver)
+    page = CheckoutInformationPage(driver, user)
     return page
 
 
 @pytest.fixture(scope="function")
 def checkout_confirmation_page(driver):
-    page = CheckoutConfirmationPage(driver)
+    page = CheckoutConfirmationPage(driver, user)
     return page
 
 
 @pytest.fixture(scope="function")
 def checkout_complete_page(driver):
-    page = CheckoutCompletePage(driver)
+    page = CheckoutCompletePage(driver, user)
     return page
