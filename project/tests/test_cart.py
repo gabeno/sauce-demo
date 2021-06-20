@@ -4,38 +4,34 @@ from project.pages import INVENTORY_ITEM_NAMES
 
 
 @pytest.mark.parametrize(
-    "inventory_list, count, products",
+    "items_to_add",
     [
-        ([], 0, []),  # zero item
-        (["Sauce Labs Onesie"], 1, ["Sauce Labs Onesie"]),  # one item
+        ([]),
+        (["Sauce Labs Onesie"]),
         (
             [
                 "Sauce Labs Onesie",
                 "Sauce Labs Backpack",
                 "Test.allTheThings() T-Shirt (Red)",
-            ],
-            3,
-            [
-                "Sauce Labs Onesie",
-                "Sauce Labs Backpack",
-                "Test.allTheThings() T-Shirt (Red)",
-            ],
-        ),  # multiple items
+            ]
+        ),
     ],
 )
 def test__add_items_to_cart__items_exist_in_cart(
-    inventory_page, cart_page, inventory_list, count, products
+    inventory_page,
+    cart_page,
+    items_to_add,
 ):
-    [inventory_page.click_add_item_button(item) for item in inventory_list]
+    [inventory_page.click_add_item_button(item) for item in items_to_add]
     inventory_page.click_cart_link()
-    cart_items = cart_page.get_cart_items()
     assert cart_page.title == "YOUR CART"
-    assert len(cart_items) == count
-    assert sorted([item.name for item in cart_items]) == sorted(products)
+    cart_items = cart_page.get_cart_items()
+    assert len(cart_items) == len(items_to_add)
+    assert sorted([item.name for item in cart_items]) == sorted(items_to_add)
 
 
 @pytest.mark.parametrize(
-    "inventory_list, items_to_remove, before_count, after_count",
+    "inventory_list, items_to_remove",
     [
         (
             [
@@ -46,8 +42,6 @@ def test__add_items_to_cart__items_exist_in_cart(
             [
                 "Sauce Labs Onesie",
             ],
-            3,
-            2,
         ),
         (
             [
@@ -59,8 +53,6 @@ def test__add_items_to_cart__items_exist_in_cart(
                 "Sauce Labs Onesie",
                 "Sauce Labs Backpack",
             ],
-            3,
-            1,
         ),
         (
             [
@@ -73,8 +65,6 @@ def test__add_items_to_cart__items_exist_in_cart(
                 "Sauce Labs Backpack",
                 "Test.allTheThings() T-Shirt (Red)",
             ],
-            3,
-            0,
         ),
     ],
 )
@@ -83,13 +73,21 @@ def test__remove_items_from_cart__cart_items_count_ok(
     cart_page,
     inventory_list,
     items_to_remove,
-    before_count,
-    after_count,
 ):
     [inventory_page.click_add_item_button(item) for item in inventory_list]
     inventory_page.click_cart_link()
     cart_items = cart_page.get_cart_items()
-    assert len(cart_items) == before_count
+    count_before = len(cart_items)
     [cart_page.click_remove_item_button(item) for item in items_to_remove]
-    cart_items = cart_page.get_cart_items()
-    assert len(cart_items) == after_count
+    count_after = len(cart_page.get_cart_items())
+    assert count_before == count_after + len(items_to_remove)
+
+
+def test__navigate_back_to_inventory_page__ok(
+    inventory_page,
+    cart_page,
+):
+    inventory_page.click_add_item_button(INVENTORY_ITEM_NAMES[0])
+    inventory_page.click_cart_link()
+    cart_page.click_continue_shopping_button()
+    assert inventory_page.get_cart_items_count() == "1"

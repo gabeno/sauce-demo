@@ -71,8 +71,7 @@ def inventory_page_without_reset(driver):
 
 @pytest.fixture(scope="function")
 def cart_page(driver):
-    page = CartPage(driver, user)
-    return page
+    return CartPage(driver, user)
 
 
 @pytest.fixture(scope="function")

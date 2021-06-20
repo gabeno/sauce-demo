@@ -1,8 +1,8 @@
-from project.pages.page_login import LoginPage
+from project.components.hamburger import HamburgerComponent
 from project.pages.utils import make_id_from_name
 
 
-class CartPage(LoginPage):
+class CartPage(HamburgerComponent):
     def __init__(self, driver, user):
         super(CartPage, self).__init__(driver, user)
 
@@ -25,3 +25,6 @@ class CartPage(LoginPage):
 
     def click_checkout_button(self):
         self.get_button("checkout").click()
+
+    def click_continue_shopping_button(self):
+        self.get_button("continue-shopping").click()
