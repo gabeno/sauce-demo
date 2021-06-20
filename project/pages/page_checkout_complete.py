@@ -1,9 +1,9 @@
-from project.pages.page_login import LoginPage
+from project.components.hamburger import HamburgerComponent
 
 
-class CheckoutCompletePage(LoginPage):
-    # def __init__(self, driver, user):
-    #    super(CheckoutCompletePage, self).__init__(driver, user)
+class CheckoutCompletePage(HamburgerComponent):
+    def __init__(self, driver, user):
+       super(CheckoutCompletePage, self).__init__(driver, user)
 
     @property
     def title(self):
