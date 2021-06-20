@@ -38,7 +38,7 @@ def test__checkout_invalid_credentials__error_message_shown(
     assert checkout_information_page.get_error_message() == error_message
 
 
-def test__checkout_invalid_credentials__error_message_shown(
+def test__checkout_valid_credentials__no_error_message_shown(
     checkout_information_page, inventory_page, cart_page
 ):
     with pytest.raises(Exception):
@@ -48,3 +48,14 @@ def test__checkout_invalid_credentials__error_message_shown(
         checkout_information_page.set_user_information("a", "b", "0")
         checkout_information_page.click_continue_button()
         checkout_information_page.get_error_message()
+
+
+def test__navigate_back_to_cart__ok(
+    checkout_information_page, inventory_page, cart_page
+):
+    inventory_page.click_add_item_button(INVENTORY_ITEM_NAMES[0])
+    inventory_page.click_cart_link()
+    cart_page.click_checkout_button()
+    checkout_information_page.title == "CHECKOUT: YOUR INFORMATION"
+    # no exception raised
+    checkout_information_page.click_cancel_button()

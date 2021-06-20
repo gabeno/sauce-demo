@@ -1,7 +1,7 @@
-from project.pages.page_login import LoginPage
+from project.components.hamburger import HamburgerComponent
 
 
-class CheckoutInformationPage(LoginPage):
+class CheckoutInformationPage(HamburgerComponent):
     def __init__(self, driver, user):
         super(CheckoutInformationPage, self).__init__(driver, user)
 
@@ -25,3 +25,6 @@ class CheckoutInformationPage(LoginPage):
 
     def click_continue_button(self):
         self.get_button("continue", tag="input").click()
+
+    def click_cancel_button(self):
+        self.get_button("cancel").click()
