@@ -89,5 +89,6 @@ def test__navigate_back_to_inventory_page__ok(
 ):
     inventory_page.click_add_item_button(INVENTORY_ITEM_NAMES[0])
     inventory_page.click_cart_link()
+    # no exception raised
     cart_page.click_continue_shopping_button()
     assert inventory_page.get_cart_items_count() == "1"
