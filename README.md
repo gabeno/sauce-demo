@@ -1,6 +1,18 @@
+### Challenge
+
+See challenge description [here](https://docs.google.com/document/d/1NjG4daSKBzySrtcWdacs-xNoi0bPkpS8Y4Q8mTivbIs/edit#)
+
+### Instructions to run
+
+- `git clone https://github.com/gabeno/sauce-demo.git`
+- `cd sauce-demo`
+- `./run.sh`
+
 ### Technologies
 
-1. PyTest for Python
+1. Pytest
+2. Selenuim
+3. Docker
 
 ### Resources
 
