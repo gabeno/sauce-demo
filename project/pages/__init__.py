@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-WEB_DRIVER_WAIT_SEC = 2
+WEB_DRIVER_WAIT_SEC = 3
 PAGE_URL = "https://www.saucedemo.com/"
 INVENTORY_ITEM_NAMES = [
     "Sauce Labs Backpack",
