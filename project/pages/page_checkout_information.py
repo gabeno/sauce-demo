@@ -26,5 +26,8 @@ class CheckoutInformationPage(HamburgerComponent):
     def click_continue_button(self):
         self.get_button("continue", tag="input").click()
 
+    def click_clear_error_button(self):
+        self.get_button("error-button", selector_type="class").click()
+
     def click_cancel_button(self):
         self.get_button("cancel").click()

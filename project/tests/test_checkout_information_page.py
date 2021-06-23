@@ -37,6 +37,8 @@ def test__checkout_invalid_credentials__error_message_shown(
 
     assert checkout_information_page.get_error_message() == error_message
 
+    checkout_information_page.click_clear_error_button()
+
 
 def test__checkout_valid_credentials__no_error_message_shown(
     checkout_information_page, inventory_page, cart_page
