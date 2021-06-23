@@ -66,27 +66,24 @@ def inventory_page(driver):
 
 @pytest.fixture(scope="function")
 def inventory_page_without_reset(driver):
-    return InventoryPage(driver, user)
+    yield InventoryPage(driver, user)
 
 
 @pytest.fixture(scope="function")
 def cart_page(driver):
-    return CartPage(driver, user)
+    yield CartPage(driver, user)
 
 
 @pytest.fixture(scope="function")
 def checkout_information_page(driver):
-    page = CheckoutInformationPage(driver, user)
-    return page
+    yield CheckoutInformationPage(driver, user)
 
 
 @pytest.fixture(scope="function")
 def checkout_confirmation_page(driver):
-    page = CheckoutConfirmationPage(driver, user)
-    return page
+    yield CheckoutConfirmationPage(driver, user)
 
 
 @pytest.fixture(scope="function")
 def checkout_complete_page(driver):
-    page = CheckoutCompletePage(driver, user)
-    return page
+    yield CheckoutCompletePage(driver, user)
