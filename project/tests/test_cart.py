@@ -28,6 +28,7 @@ def test__add_items_to_cart__items_exist_in_cart(
     cart_items = cart_page.get_cart_items()
     assert len(cart_items) == len(items_to_add)
     assert sorted([item.name for item in cart_items]) == sorted(items_to_add)
+    [cart_page.click_remove_item_button(item) for item in items_to_add]
 
 
 @pytest.mark.parametrize(

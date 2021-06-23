@@ -30,6 +30,8 @@ def test__initial_page_load__no_items_in_cart(inventory_page):
 def test__add_each_item_to_cart__ok(inventory_page, item_name):
     inventory_page.click_add_item_button(item_name)
     assert inventory_page.get_cart_items_count() == "1"
+    # cleanup
+    inventory_page.click_remove_item_button(item_name)
 
 
 @pytest.mark.parametrize(
@@ -61,6 +63,8 @@ def test__remove_items_from_cart__ok(inventory_page, item_name):
 def test__add_items_to_cart__cart_count_ok(inventory_page, item_list, count):
     [inventory_page.click_add_item_button(item) for item in item_list]
     assert inventory_page.get_cart_items_count() == count
+    # cleanup
+    [inventory_page.click_remove_item_button(item) for item in item_list]
 
 
 def test__sort_by_name_a_to_z__ok(inventory_page):
